@@ -1,11 +1,18 @@
-import React from 'react'
+import React ,{useEffect} from 'react'
 
-const stories = () => {
+import { json } from 'react-router-dom'
+
+const Stories = () => {
+    let isLoading=true;
+
     let Api="http://hn.algolia.com/api/v1/search?query=html"
 
     const fetchapidata=async(url)=>{
         try{
-            const res=fetch()
+            const res=await fetch(url)
+            const data=await res.json();
+            console.log(data); 
+            isLoading=false;
         }catch(error){
             console.log(error);
         }
@@ -14,6 +21,13 @@ const stories = () => {
       fetchapidata(Api);
     }, [])
     
+    if(isLoading){
+        return(
+            <>
+            <h1>Loading...</h1>
+            </>
+        )
+    }
   return (
       <>
       <h2>News Page...</h2>
@@ -21,4 +35,4 @@ const stories = () => {
   )
 }
 
-export default stories
+export default Stories;
