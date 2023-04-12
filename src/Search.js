@@ -1,8 +1,10 @@
 import React from 'react'
-
+import { Useglobalhooks } from './context'
 const search = () => {
+  const name=Useglobalhooks();
+
   return (
-    <div>search</div>
+    <div>search {name}</div>
   )
 }
 
